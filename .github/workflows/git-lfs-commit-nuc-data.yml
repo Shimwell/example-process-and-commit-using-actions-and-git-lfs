@@ -1,0 +1,48 @@
+name: auto_benchmark
+on:  
+  pull_request:    
+    branches:
+    - main  
+  push:
+    branches:
+    - main
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+      - name: scope out
+        run: |
+            pwd
+            ls
+      - name: Build and test with Docker
+        run: |
+            docker build --tag nuc_data_maker .
+            docker run -v /home/runner/work/example-process-and-commit-using-actions-and-git-lfs/example-process-and-commit-using-actions-and-git-lfs:/share nuc_data_maker bash run_all.sh
+      - name: scope out
+        run: |
+            pwd
+            ls
+      - name: install git lfs
+        run: |
+          wget https://github.com/git-lfs/git-lfs/releases/download/v2.13.2/git-lfs-linux-amd64-v2.13.2.tar.gz
+          mkdir git-lfs
+          tar -xf git-lfs-linux-amd64-v2.13.2.tar.gz -C git-lfs
+          bash git-lfs/install.sh
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git lfs track "*.h5"
+          git add .gitattributes
+          git add h5_files/*.h5
+          git commit -m "Added h5 cross sections as lfs commit" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
