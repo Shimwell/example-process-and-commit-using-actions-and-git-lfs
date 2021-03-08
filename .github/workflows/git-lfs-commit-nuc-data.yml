@@ -22,7 +22,7 @@ jobs:
       - name: Build and test with Docker
         run: |
             docker build --tag nuc_data_maker .
-            ll
+            ls
             pwd
             docker run -v /home/runner/work/example-process-and-commit-using-actions-and-git-lfs/example-process-and-commit-using-actions-and-git-lfs:/share nuc_data_maker bash run_all.sh
       - name: scope out
