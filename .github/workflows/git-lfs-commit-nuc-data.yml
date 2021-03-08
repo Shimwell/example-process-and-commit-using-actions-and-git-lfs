@@ -36,14 +36,14 @@ jobs:
         run: |
             pwd
             ls
+            ls nndc-b7.1-hdf5
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git lfs track "*.h5"
-          git add .gitattributes
           git add nndc-b7.1-hdf5/*.h5
-          git commit -m "Added h5 cross sections as lfs commit" -a
+          git commit -m "Added h5 cross sections as lfs commit"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
