@@ -42,9 +42,9 @@ jobs:
           git config --local user.name "Shimwell"
           git config --local user.password "${{ secrets.GITHUB_TOKEN }}"
           sudo git lfs track "*.h5"
-          sudo git add .gitattributes
-          sudo git add nndc-b7.1-hdf5/*.h5
-          git commit -m "Added h5 cross sections as lfs commit" -a
+          sudo git add nndc-b7.1-hdf5/neutron/*.h5
+          sudo git add nndc-b7.1-hdf5/photon/*.h5
+          git commit -m "Added h5 cross sections as lfs commit"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
