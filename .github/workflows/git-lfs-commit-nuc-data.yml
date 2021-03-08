@@ -25,10 +25,6 @@ jobs:
             ls
             pwd
             docker run -v /home/runner/work/example-process-and-commit-using-actions-and-git-lfs/example-process-and-commit-using-actions-and-git-lfs:/share nuc_data_maker bash run_all.sh
-      - name: scope out
-        run: |
-            pwd
-            ls
       - name: install git lfs
         run: |
           wget https://github.com/git-lfs/git-lfs/releases/download/v2.13.2/git-lfs-linux-amd64-v2.13.2.tar.gz
@@ -36,6 +32,10 @@ jobs:
           tar -xf git-lfs-linux-amd64-v2.13.2.tar.gz -C git-lfs
           cd git-lfs
           sudo bash install.sh
+      - name: scope out 2
+        run: |
+            pwd
+            ls
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
