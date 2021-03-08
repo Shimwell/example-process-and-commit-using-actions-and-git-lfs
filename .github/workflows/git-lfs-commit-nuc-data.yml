@@ -34,7 +34,8 @@ jobs:
           wget https://github.com/git-lfs/git-lfs/releases/download/v2.13.2/git-lfs-linux-amd64-v2.13.2.tar.gz
           mkdir git-lfs
           tar -xf git-lfs-linux-amd64-v2.13.2.tar.gz -C git-lfs
-          sudo bash git-lfs/install.sh
+          cd git-lfs
+          sudo bash install.sh
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
