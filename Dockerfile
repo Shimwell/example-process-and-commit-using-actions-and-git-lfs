@@ -1,2 +1,2 @@
 
-FROM openmc/openmc:latests
+FROM openmc/openmc:develop
