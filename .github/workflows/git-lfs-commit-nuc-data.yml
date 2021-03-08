@@ -22,6 +22,8 @@ jobs:
       - name: Build and test with Docker
         run: |
             docker build --tag nuc_data_maker .
+            ll
+            pwd
             docker run -v /home/runner/work/example-process-and-commit-using-actions-and-git-lfs/example-process-and-commit-using-actions-and-git-lfs:/share nuc_data_maker bash run_all.sh
       - name: scope out
         run: |
@@ -32,7 +34,7 @@ jobs:
           wget https://github.com/git-lfs/git-lfs/releases/download/v2.13.2/git-lfs-linux-amd64-v2.13.2.tar.gz
           mkdir git-lfs
           tar -xf git-lfs-linux-amd64-v2.13.2.tar.gz -C git-lfs
-          bash git-lfs/install.sh
+          sudo bash git-lfs/install.sh
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
