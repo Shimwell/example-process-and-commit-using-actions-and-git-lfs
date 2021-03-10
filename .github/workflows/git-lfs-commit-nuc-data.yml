@@ -39,8 +39,6 @@ jobs:
             ls nndc-b7.1-hdf5
       - name: Commit files
         run: |
-          git config --local user.name "Shimwell"
-          sudo git lfs track "*.h5"
           sudo git add nndc-b7.1-hdf5/neutron/*.h5
           sudo git add nndc-b7.1-hdf5/photon/*.h5
           git commit -m "Added h5 cross sections as lfs commit"
