@@ -24,7 +24,7 @@ jobs:
             docker build --tag nuc_data_maker .
             ls
             pwd
-	          rm -rf nndc-b7.1-hdf5
+            rm -rf nndc-b7.1-hdf5
             docker run -v /home/runner/work/example-process-and-commit-using-actions-and-git-lfs/example-process-and-commit-using-actions-and-git-lfs:/share nuc_data_maker bash run_all.sh
       - name: scope out 2
         run: |
