@@ -34,7 +34,10 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git add nndc-b7.1-hdf5
+          git add nndc-b7.1-hdf5/neutron
           git add nndc-b7.1-hdf5/neutron/*.h5
+          git add .
           git commit -m "Added h5 cross sections as commit" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
