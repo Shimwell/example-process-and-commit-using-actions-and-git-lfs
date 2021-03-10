@@ -24,6 +24,7 @@ jobs:
             docker build --tag nuc_data_maker .
             ls
             pwd
+	          rm -rf nndc-b7.1-hdf5
             docker run -v /home/runner/work/example-process-and-commit-using-actions-and-git-lfs/example-process-and-commit-using-actions-and-git-lfs:/share nuc_data_maker bash run_all.sh
       - name: scope out 2
         run: |
@@ -36,9 +37,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add nndc-b7.1-hdf5/neutron/Y91.h5
           git add nndc-b7.1-hdf5/neutron/*.h5
-          git commit -m "Added h5 cross sections as commit"
+          git commit -m "Added h5 cross sections as commit" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
