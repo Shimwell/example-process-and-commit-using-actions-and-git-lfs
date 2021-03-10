@@ -30,17 +30,15 @@ jobs:
             pwd
             ls
             ls nndc-b7.1-hdf5
+            echo ls nndc-b7.1-hdf5/neutron
+            ls nndc-b7.1-hdf5/neutron
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add nndc-b7.1-hdf5
-          git add nndc-b7.1-hdf5/neutron
+          git add nndc-b7.1-hdf5/neutron/Y91.h5
           git add nndc-b7.1-hdf5/neutron/*.h5
-          ls nndc-b7.1-hdf5/neutron/
-          git status
-          git add .
-          git commit -m "Added h5 cross sections as commit" -a
+          git commit -m "Added h5 cross sections as commit"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
